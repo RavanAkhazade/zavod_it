@@ -1,0 +1,42 @@
+{% extends "test_exercise/layout.html" %}
+
+{% block title %}
+    All News
+{% endblock %}
+
+{% block body %}
+
+{% with r=all_news.count %} {# задаю количество строк для выделения пространсва div'ам #}
+<style>
+    .news {
+        display: grid;
+        grid-template-rows: repeat({{r}}, auto);
+        grid-template-columns: 1fr 1fr 1fr;
+        border-style: solid;
+        border-color: #DFDEDE;
+        padding: 30px;
+        margin-bottom: 20px
+    }
+
+    .title {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+    .views {
+        align-self: center; text-align: center
+    }
+
+</style>
+{% endwith%}
+
+{% for n in all_news %}
+    <div class="news">
+        <div class="title">
+            <h3><a style="color: black" href="{% url 'news' n.id %}">{{ n.title }}</a></h3>
+            {{ n.text }}
+        </div>
+        <h3 class="views">{{ n.views }} Views</h3>
+    </div>
+{% endfor %}
+{% endblock %}

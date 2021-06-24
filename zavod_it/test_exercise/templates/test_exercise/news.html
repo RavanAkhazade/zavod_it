@@ -1,0 +1,17 @@
+{% extends "test_exercise/layout.html" %}
+
+{% block title %}
+    {{ news }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ news.title }}</h1>
+    {{ news.text }}<br><br>
+    <h6 style="text-align: right; padding-right: 20px">
+        Author: {{ news.author }}<br>
+        Created at: {{ news.created_at }}<br>
+        Tags: {{ news.tags }}<br>
+        {{ news.views }} views.
+    </h6>
+
+{% endblock %}
